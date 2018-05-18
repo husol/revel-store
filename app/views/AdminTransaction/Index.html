@@ -1,0 +1,24 @@
+{{set . "title" "Husol Admin"}}
+{{template "admin_header.html" .}}
+{{template "layouts/admin_sidebar.html" .}}
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-head-line">Quản trị giao dịch</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-subhead-line">DANH SÁCH GIAO DỊCH</h1>
+                <div id="tableTransaction" class="table-responsive" data-totalpage="{{.totalPage}}"></div>
+                <div id="paginationTransaction"></div>
+            </div>
+        </div>
+        <div id="divOrder" class="row"></div>
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+{{append . "moreScripts" "js/admin/transaction.js"}}
+{{template "admin_footer.html" .}}

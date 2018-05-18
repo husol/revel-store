@@ -1,0 +1,120 @@
+{{set . "title" .myProduct.Name}}
+{{set . "ogImage" .myProduct.Cover}}
+{{template "header.html" .}}
+</div>
+<div class="main">
+    <div class="content">
+
+        <div class="content_top">
+            <div class="back-links">
+                <p><a href="/products">Sản phẩm</a> >> <a href="/category/{{.myProduct.IdCategory}}">{{.myCate.Name}}</a></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section group">
+            <div class="product-details">
+                <div class="grid images_3_of_2">
+                    <div id="container">
+                        <div id="products_example">
+                            <div id="products">
+                                <div class="slides_container">
+                                    <img src="{{.myProduct.Cover}}" title="{{.myProduct.ModelName}}" alt="{{.myProduct.Name}}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="desc span_3_of_2">
+                    <h2>{{.myProduct.ModelName}} : {{.myProduct.Name}}</h2>
+                    {{nl2br .myProduct.ShortDescription}}
+                    <div class="price">
+                        <p>Giá: <span>{{formatFValue .myProduct.Price 0}} VND</span></p>
+                    </div>
+                    <div class="share-desc">
+                        <div class="button"><span><a id="addTrolley" data-rel="{{.myProduct.Id}},{{.myProduct.ModelName}},{{.myProduct.Name}},{{.myProduct.Price}}" href="javascript: void(0);">Thêm vào giỏ hàng</a></span></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="product_desc">
+                <div id="horizontalTab">
+                    <ul class="resp-tabs-list">
+                        <li>Mô tả chi tiết</li>
+                        <li>Bình luận sản phẩm</li>
+                        <div class="clear"></div>
+                    </ul>
+                    <div class="resp-tabs-container">
+                        <div class="product-desc">
+                            {{html .myProduct.Description}}
+                        </div>
+                        <div class="review">
+                            <div id="comments">
+                            {{template "Product/comments.html" .}}
+                            </div>
+                            <div class="your-review">
+                            {{if gt .LoggedUser.Id 0}}
+                                <div>
+                                    <span><label>Bình luận<span class="red">*</span></label></span>
+                                    <span><textarea id="contentComment" name="contentComment" data-id="0" data-idproduct="{{.myProduct.Id}}"></textarea></span>
+                                </div>
+                                <div>
+                                    <span><input id="btnComment" type="button" value="Gửi"></span>
+                                </div>
+                            {{else}}
+                                <div class="text-center">
+                                    <span>Vui lòng <a href="/login">đăng nhập</a> để bình luận sản phẩm</span>
+                                </div>
+                            {{end}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#horizontalTab').easyResponsiveTabs({
+                        type: 'default', //Types: default, vertical, accordion
+                        width: 'auto', //auto or any width like 600px
+                        fit: true   // 100% fit in a container
+                    });
+                });
+            </script>
+            <div class="content_bottom">
+                <div class="heading">
+                    <h3>Sản phẩm cùng loại</h3>
+                </div>
+                <div class="see">
+                    <p><a href="/products">Xem tất cả Sản phẩm</a></p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="section group">
+        {{range $index, $product := .relatedProducts}}
+            {{if and (eq (mod $index 4) 0) (gt $index 0)}}
+            </div>
+            <div class="section group">
+            {{end}}
+                <div class="grid_1_of_4 images_1_of_4">
+                    <img class="zoomer" data-zoom-image="{{$product.Cover}}" src="{{$product.Cover}}" alt="{{$product.Name}}" />
+                    <a href="/products/{{$product.Id}}">
+                        <h2>{{$product.ModelName}}</h2>
+                        <h3>{{$product.Name}}</h3>
+                    </a>
+                    <div class="price-details">
+                        <div class="price-number">
+                            <p><span class="rupees">{{formatFValue $product.Price 0}} VND</span></p>
+                        </div>
+                        <div class="add-cart">
+                            <h4><a href="/products/{{$product.Id}}">Chi tiết</a></h4>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+        {{else}}
+            <br><div class="text-center">Chưa có Sản phẩm nào</div>
+        {{end}}
+            </div>
+        </div>
+{{append . "moreScripts" "js/product.js"}}
+{{template "footer.html" .}}

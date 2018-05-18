@@ -1,0 +1,29 @@
+<div class="col-md-12">
+    <h1 class="page-subhead-line">CHI TIẾT GIAO DỊCH <b>{{.Transaction.Id}}</b></h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th class="text-right">Số lượng</th>
+                <th class="text-right">Đơn giá</th>
+                <th class="text-right">Thành tiền</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range $index, $order := .Orders}}
+                <tr>
+                    <td>{{$order.Product.ModelName}}</td>
+                    <td>{{$order.Product.Name}}</td>
+                    <td class="text-right">{{$order.Quantity}}</td>
+                    <td class="text-right">{{formatFValue $order.Product.Price 0}} VND</td>
+                    <td class="text-right">{{formatFValue $order.Amount 0}} VND</td>
+                </tr>
+            {{end}}
+            </tbody>
+        </table>
+        <div><span class="text-red">Địa điểm giao hàng:</span> {{.Transaction.DeliverPlace}}</div>
+        <div><span class="text-red">Ghi chú:</span> {{.Transaction.Note}}</div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+{{set . "title" "Husol Admin"}}
+{{template "admin_header.html" .}}
+{{template "layouts/admin_sidebar.html" .}}
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-head-line">Quản trị thông tin</h1>
+                <div class="panel">
+                    <div class="panel-heading text-right">
+                        <button class="btn btn-add btn-success"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Tiêu đề</th>
+                                    <th>Người đăng</th>
+                                    <th class="text-center">Trạng thái</th>
+                                    <th class="text-center" width="10%">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{range $index, $info := .information}}
+                                <tr data-rel="{{$info.Id}}">
+                                    <td>{{$info.Title}}</td>
+                                    <td>{{$info.PostedUser}}</td>
+                                    <td class="text-center">{{if eq $info.Status 1}}Hiển thị{{else}}Ẩn{{end}}</td>
+                                    <td class="text-center">
+                                        <span title="Edit" class="btn-edit glyphicon glyphicon-edit cursor-pointer text-blue"></span>
+                                        &nbsp;&nbsp;
+                                        <span title="Delete" class="btn-delete glyphicon glyphicon-trash cursor-pointer text-red"></span>
+                                    </td>
+                                </tr>
+                                {{else}}
+                                <tr>
+                                    <td colspan="4" class="text-center">Chưa có Thông tin nào</td>
+                                </tr>
+                                {{end}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+{{append . "moreScripts" "js/admin/information.js"}}
+{{template "admin_footer.html" .}}

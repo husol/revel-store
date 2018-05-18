@@ -1,0 +1,20 @@
+{{set . "title" "Information"}}
+{{template "header.html" .}}
+</div>
+<div class="main">
+    <div class="content">
+        {{range $index, $info := .information}}
+        <div class="image group">
+            <div class="grid images_3_of_1">
+                <img src='{{if eq $info.Cover ""}}/public/img/no_image.png{{else}}{{$info.Cover}}{{end}}' alt="Cover Image" />
+            </div>
+            <div class="grid news_desc">
+                <h3>{{$info.Title}}</h3>
+                <h4>Đăng vào {{datetime $info.UpdatedAt}}</h4>
+                {{html $info.Description}}
+            </div>
+        </div>
+        {{else}}
+        <div class="image group">Chưa có thông tin nào</div>
+        {{end}}
+{{template "footer.html" .}}

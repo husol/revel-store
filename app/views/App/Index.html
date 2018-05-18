@@ -1,0 +1,85 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+{{template "layouts/header_slide.html" .}}
+  </div>
+  <div class="main">
+    <div class="content">
+
+      <div class="content_top">
+        <div class="heading">
+          <h3>Sản phẩm nổi bật</h3>
+        </div>
+        <div class="see">
+          <p><a href="/products">Xem tất cả Sản phẩm</a></p>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="section group">
+      {{range $index, $product := .featuredProducts}}
+        {{if lt $index 4}}
+        <div class="grid_1_of_4 images_1_of_4">
+          <img class="zoomer" data-zoom-image="{{$product.Cover}}" src="{{$product.Cover}}" alt="{{$product.Name}}" />
+          <a href="/products/{{$product.Id}}">
+            <h2>{{$product.ModelName}}</h2>
+            <h3>{{$product.Name}}</h3>
+          </a>
+          <div class="price-details">
+            <div class="price-number">
+              <p><span class="rupees">{{formatFValue $product.Price 0}} VND</span></p>
+            </div>
+            <div class="add-cart">
+              <h4><a href="/products/{{$product.Id}}">Chi tiết</a></h4>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+        {{end}}
+      {{else}}
+        <div class="text-center">Chưa có Sản phẩm nào</div>
+      {{end}}
+      </div>
+      <div class="content_bottom">
+        <div class="heading">
+          <h3>Sản phẩm xem nhiều</h3>
+        </div>
+        <div class="see">
+          <p><a href="/products">Xem tất cả Sản phẩm</a></p>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="section group">
+      {{range $index, $product := .mostViewedProducts}}
+        {{if and (eq (mod $index 4) 0) (gt $index 0)}}
+        </div>
+        <div class="section group">
+        {{end}}
+        <div class="grid_1_of_4 images_1_of_4">
+          <img class="zoomer" data-zoom-image="{{$product.Cover}}" src="{{$product.Cover}}" alt="{{$product.Name}}" />
+          <a href="/products/{{$product.Id}}">
+            <h2>{{$product.ModelName}}</h2>
+            <h3>{{$product.Name}}</h3>
+          </a>
+          <div class="price-details">
+            <div class="price-number">
+              <p><span class="rupees">{{formatFValue $product.Price 0}} VND</span></p>
+            </div>
+            <div class="add-cart">
+              <h4><a href="/products/{{$product.Id}}">Chi tiết</a></h4>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      {{else}}
+        <br><div class="text-center">Chưa có Sản phẩm nào</div>
+      {{end}}
+      </div>
+<script>
+ if ($_GET('register') == 1) {
+     $(document).ready(function() {
+         setTimeout(function() {
+             $('#register').trigger('click');
+         }, 2500);
+     });
+ }
+</script>
+{{template "footer.html" .}}

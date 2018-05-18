@@ -1,0 +1,101 @@
+.form-group.required label:after {
+    content:"*";
+    color:red;
+}
+.text-blue {
+    color: #3197CA !important;
+}
+.text-red {
+    color: #E4292F !important;
+}
+
+.left {
+    float: left !important;
+}
+
+.right {
+    float: right !important;
+}
+
+.cursor-pointer{
+    cursor: pointer !important;
+}
+
+.notification_box {
+    position: fixed;
+    min-width: 500px;
+    min-height: 30px;
+    left: 2px;
+    bottom: 10px;
+    padding: 18px 15px 10px 15px;
+    color: #c36e00;
+    background-color: #fffe87;
+    z-index: 10002;
+    display: none;
+}
+.notification_box > p {
+    float: left;
+}
+.notification_box > img {
+    float: right;
+    margin: 3px 0px 5px 0;
+}
+.alert {
+    width: 100%;
+    margin-bottom: 0;
+    text-align: left;
+    padding-left: 10%;
+    z-index: 999;
+}
+.alert >  ul >  li{
+    margin: 5px 0 10px 0;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: inherit;
+}
+
+.modal-header, .close {
+    background-color: #5cb85c;
+    color:white !important;
+    text-align: center;
+    font-size: 30px;
+}
+
+.modal-footer {
+    text-align: center;
+}
+
+form .form-group {
+    margin-left: 15px;
+}
+
+form label {
+    margin-bottom: 6px;
+}
+
+form textarea.form-control {
+    width: 100%;
+    padding: 6px 12px;
+}
+
+form .form-control {
+    width: 92%;
+    padding: 6px 12px;
+}
+
+form .form-control.cut {
+    width: 85%;
+    float: left;
+}
+
+.table > tbody > tr.selected {
+    background-color: #FFA500;
+}
+/* BEGIN SHOWMESSAGE JQUERY */
+.notification{font-family: Gotham, HTC Hand, Helvetica, Arial, sans-serif; font-size: large !important;font-weight: bold;background-color: rgb(247, 247, 247);color: red;}
+.success{font-family: Gotham, HTC Hand, Helvetica, Arial, sans-serif; font-size: large !important;font-weight: bold;background-color: #acfa58;color: black;}
+.fail{font-family: Gotham, HTC Hand, Helvetica, Arial, sans-serif; font-size: large !important;font-weight: bold;background-color: #fe2e2e;color: white;}
+.fail li {background:none !important;font-size: large !important;display:block;}
+/* END SHOWMESSAGE JQUERY */

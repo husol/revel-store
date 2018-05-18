@@ -1,0 +1,44 @@
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li>
+                <a id="account" class="user-img-div cursor-pointer" href="#">
+                    {{if ne ._loggedUser.Avatar ""}}
+                    <img width="64" height="64" src="{{._loggedUser.Avatar}}" class="img-thumbnail" />
+                    {{else}}
+                    <span style="font-size: xx-large; float: left; margin-top: 10px;" class="glyphicon glyphicon-user"></span>
+                    {{end}}
+                    <div class="inner-text">{{._loggedUser.FullName}}<br />
+                        <small>Last Login : {{datetime ._loggedUser.LastLogin}}</small>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a{{if eq ._curr_controller "AdminHome"}} class="active-menu"{{end}} href="/admin"><i class="fa fa-dashboard "></i>Dashboard</a>
+            </li>
+            <li class="active">
+                <a href="#"><i class="fa fa-database"></i>Quản trị<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a{{if eq ._curr_controller "AdminTransaction"}} class="active-menu"{{end}} href="/admin/transactions"><i class="fa fa-exchange"></i>Giao dịch</a>
+                    </li>
+                    <li>
+                        <a{{if eq ._curr_controller "AdminUser"}} class="active-menu"{{end}} href="/admin/users"><i class="fa fa-users"></i>Người dùng</a>
+                    </li>
+                    <li>
+                        <a{{if eq ._curr_controller "AdminCategory"}} class="active-menu"{{end}} href="/admin/categories"><i class="glyphicon glyphicon-th-list"></i>Loại sản phẩm</a>
+                    </li>
+                    <li>
+                        <a{{if eq ._curr_controller "AdminProduct"}} class="active-menu"{{end}} href="/admin/products"><i class="fa fa-barcode"></i>Sản phẩm</a>
+                    </li>
+                    <li>
+                        <a{{if eq ._curr_controller "AdminInformation"}} class="active-menu"{{end}} href="/admin/information"><i class="fa fa-info"></i>Thông tin</a>
+                    </li>
+                    <li>
+                        <a{{if eq ._curr_controller "AdminComment"}} class="active-menu"{{end}} href="/admin/comments"><i class="fa fa-comments"></i>Bình luận</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

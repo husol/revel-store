@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="google-site-verification" content="OfBocygPqf349K8kUyFUJucMveY_En5nMKoXWh7RsTU" />
+    <title>{{.title}} | My Pham Tay Ninh | myphamtayninh.com</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="title" content="Cửa hàng Mỹ Phẩm Tây Ninh | myphamtayninh.com | My Pham Tay Ninh | myphamtayninh.com">
+    <meta name="description" content="{{.title}} - My Pham Tay Ninh">
+    {{if .ogImage}}
+    <meta property="og:image" content="{{.ogImage}}">
+    {{end}}
+    <link href="/public/css/bootstrap-3.3.6.min.css" rel="stylesheet" type="text/css">
+    <link href="/public/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css">
+    <link href="/public/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/public/css/home.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/public/css/slider.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/public/css/easy-responsive-tabs.css" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="/public/js/jquery-2.2.4.min.js"></script>
+    <script src="/public/js/bootstrap-3.3.6.min.js"></script>
+    <script src="/public/js/bootstrap-multiselect.js"></script>
+    <script src="/public/js/jquery.showMessage.min.js"></script>
+    <script src="/public/js/jquery.twbsPagination.min.js"></script>
+    <script src="/public/js/jquery.elevateZoom.min.js"></script>
+    <script src="/public/js/move-top.js"></script>
+    <script src="/public/js/easing.js"></script>
+    <script src="/public/js/easyResponsiveTabs.js"></script>
+    <script src="/public/js/startstop-slider.js"></script>
+    <script src="/public/js/common.js"></script>
+
+    {{range .moreStyles}}
+      <link rel="stylesheet" type="text/css" href="/public/{{.}}">
+    {{end}}
+  </head>
+  <body>
+    <div id="loading" class="notification_box">
+      <p><span id="infoText">Processing...</span></p>
+      <img src="/public/img/loading.gif">
+    </div>
+    <script>
+        var root_url = '/';
+    </script>
+    {{template "flash.html" .}}
+    <div id="common_dialog" class="collapse modal fade" role="dialog"></div>
+    <div class="wrap">
+      <div class="header">
+        <div id="fixtop" class="headertop_desc">
+          <div class="call">
+            <p>
+                <span>Hotline?</span> gọi cho chúng tôi <span class="number">+84 937 615 861</span></span>
+            </p>
+          </div>
+          <div class="account_desc">
+            <ul>
+              <li><a id="register" href="javascript:void(0);">Đăng ký</a></li>
+              {{if eq ._loggedUser.Id 0}}
+              <li><a href="/login">Đăng nhập</a></li>
+              {{else}}
+              <li><a id="account" href="javascript:void(0);">Xin chào <span class="account-name">{{._loggedUser.FullName}}</span></a></li>
+              <li><a href="/logout">Đăng xuất</a></li>
+              {{end}}
+            </ul>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="header_top">
+          <div class="logo">
+            <a href="/"><img src="/public/img/logo.png" width="150" height="135" alt="Mỹ Phẩm Tây Ninh" /></a>
+          </div>
+          <div class="bank-info">
+            Tài khoản Ngân hàng Techcombank<br />
+            - Số tài khoản: 14025143652012<br />
+            - Chi nhánh: Sài Gòn<br />
+            - Chủ tài khoản: Huỳnh Tấn Khoa
+          </div>
+          <div class="cart">
+          {{if eq ._curr_controller "Transaction"}}
+              <div class="text-center">Tiếp tục <a href="/products">mua hàng</a></div>
+          {{else}}
+              <button id="btnOrder" type="button" class="btn btn-primary">Đặt hàng</button>
+          {{end}}
+              <div id="dd" class="wrapper-dropdown-2">
+                  <span class="glyphicon glyphicon-shopping-cart"></span>
+                  <span id="proNum">0</span> sản phẩm. Tổng: <span id="proAmount">0</span> VND
+                  <ul class="dropdown">
+                      <li>Không có sản phẩm nào trong Giỏ hàng</li>
+                  </ul>
+              </div>
+          </div>
+          {{if eq ._curr_controller "Transaction"}}
+            <script type="text/javascript">
+                $(function() {
+                    updateTrolleyView();
+                    $("#dd").removeClass('wrapper-dropdown-2');
+                    $("#dd > ul").remove();
+                });
+            </script>
+          {{else}}
+          <script type="text/javascript">
+              $(function() {
+                  updateTrolleyView();
+                  $(document).on('click', 'li > span .removeQty', function() {
+                      var id = $(this).closest('li').data('rel');
+                      //Calculate in trolley
+                      var trolley = JSON.parse(sessionStorage.trolley);
+                      if (trolley[id].quantity > 1) {
+                          trolley[id].quantity--;
+                          trolley[id].amount = trolley[id].quantity * trolley[id].price;
+                      } else {
+                          delete trolley[id];
+                      }
+
+                      sessionStorage.trolley = JSON.stringify(trolley);
+                      updateTrolleyView();
+                  });
+                  $(document).on('click', 'li > span .addQty', function() {
+                      var id = $(this).closest('li').data('rel');
+                      //Calculate in trolley
+                      var trolley = JSON.parse(sessionStorage.trolley);
+                      trolley[id].quantity++;
+                      trolley[id].amount = trolley[id].quantity * trolley[id].price;
+
+                      sessionStorage.trolley = JSON.stringify(trolley);
+                      updateTrolleyView();
+                  });
+                  $(document).on('click', '#dd', function(event) {
+                      $('.wrapper-dropdown-2').addClass('active');
+                      event.stopPropagation();
+                  });
+                  $(document).on('click', function() {
+                      $('.wrapper-dropdown-2').removeClass('active');
+                  });
+              });
+          </script>
+          {{end}}
+          <div class="clear"></div>
+        </div>
+        <div class="header_bottom">
+          <div class="menu">
+            <ul>
+              <li{{if eq ._curr_controller "App"}} class="active"{{end}}><a href="/">Trang chủ</a></li>
+              <li{{if eq ._curr_controller "Product"}} class="active"{{end}}><a href="/products">Sản phẩm</a></li>
+              <li{{if eq ._curr_controller "Help"}} class="active"{{end}}><a href="/help">Hướng dẫn</a></li>
+              <li{{if eq ._curr_controller "Information"}} class="active"{{end}}><a href="/information">Thông tin</a></li>
+              <li{{if eq ._curr_controller "About"}} class="active"{{end}}><a href="/about">Giới thiệu</a></li>
+              <li{{if eq ._curr_controller "Contact"}} class="active"{{end}}><a href="/contact">Liên hệ</a></li>
+              <div class="clear"></div>
+            </ul>
+          </div>
+          <div class="search_box">
+            <form method="GET" action="/products">
+              <input id="keyword" name="keyword" type="text" placeholder="Tìm sản phẩm" value="{{if .keyword}}{{.keyword}}{{end}}">
+              <input id="btnSearch" type="button">
+            </form>
+          </div>
+          <div class="clear"></div>
+        </div>

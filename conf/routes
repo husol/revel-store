@@ -1,0 +1,82 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+module:testrunner
+
+GET     /                                           App.Index
+GET     /sitemap.xml                                App.Sitemap
+GET     /robots.txt                                 App.Robots
+
+# We should define foreach route, this is better
+GET     /category/:id                               Product.Category
+GET     /products                                   Product.Index
+GET     /products/:id                               Product.Detail
+POST    /products/update_comment                    Product.UpdateComment
+POST    /products/delete_comment                    Product.DeleteComment
+GET     /help                                       Help.Index
+GET     /information                                Information.Index
+GET     /transactions                               Transaction.Index
+POST    /transactions/checkout                      Transaction.Checkout
+GET     /about                                      About.Index
+GET     /contact                                    Contact.Index
+POST    /contact/send_message                       Contact.SendMessage
+GET     /login                                      User.Login
+POST    /login                                      User.PostLogin
+GET     /logout                                     User.Logout
+GET     /forgotpassword/:email/:token               User.ForgotPasswordChangeForm
+POST    /forgotpassword                             User.ForGotPasswordUpdate
+GET     /user/:email/:token                         User.Index
+POST    /user/account                               User.AccountForm
+POST    /user/account_update                        User.AccountUpdate
+POST    /user/forgotpassword                        User.ForgotPasswordForm
+POST    /user/forgotpassword_process                User.ForgotPasswordProcess
+
+# Admin site
+GET     /admin                                      AdminHome.Index
+POST    /admin/sendmail                             AdminHome.Sendmail
+GET     /admin/home/:id/update/:status              AdminHome.Update
+
+GET     /admin/transactions                         AdminTransaction.Index
+POST    /admin/transactions/paging                  AdminTransaction.Paging
+POST    /admin/transactions/detail                  AdminTransaction.Detail
+GET     /admin/transactions/:id/update/:status      AdminTransaction.Update
+
+POST    /admin/user/account                         User.AccountForm
+POST    /admin/user/account_update                  User.AccountUpdate
+
+GET     /admin/users                                AdminUser.Index
+POST    /admin/users/load_form                      AdminUser.LoadForm
+POST    /admin/users/update                         AdminUser.Update
+GET     /admin/users/:id/delete                     AdminUser.Delete
+POST    /admin/users/checkExistedEmail              AdminUser.CheckExistedEmail
+
+GET     /admin/categories                           AdminCategory.Index
+POST    /admin/categories/load_form                 AdminCategory.LoadForm
+POST    /admin/categories/update                    AdminCategory.Update
+GET     /admin/categories/:id/delete                AdminCategory.Delete
+
+GET     /admin/products                             AdminProduct.Index
+POST    /admin/products/load_form                   AdminProduct.LoadForm
+POST    /admin/products/update                      AdminProduct.Update
+GET     /admin/products/:id/delete                  AdminProduct.Delete
+
+GET     /admin/information                          AdminInformation.Index
+POST    /admin/information/load_form                AdminInformation.LoadForm
+POST    /admin/information/update                   AdminInformation.Update
+GET     /admin/information/:id/delete               AdminInformation.Delete
+
+GET     /admin/comments                             AdminComment.Index
+POST    /admin/comments/paging                      AdminComment.Paging
+GET     /admin/comments/:id/approve                 AdminComment.Approve
+GET     /admin/comments/:id/delete                  AdminComment.Delete
+
+
+# Ignore favicon requests
+GET     /favicon.ico                                404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/*filepath                       Static.Serve("public")
+
+# Catch all, not recommend
+#*       /:controller/:action                    :controller.:action

@@ -1,0 +1,96 @@
+{{set . "title" "Product"}}
+{{template "header.html" .}}
+{{template "layouts/header_slide.html" .}}
+</div>
+<div class="main">
+    <div class="content">
+    {{if eq .keyword ""}}
+        <div class="content_top">
+            <div class="heading">
+                <h3>Sản phẩm mới</h3>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section group">
+        {{range $index, $product := .recentProducts}}
+            {{if lt $index 4}}
+            <div class="grid_1_of_4 images_1_of_4">
+                <img class="zoomer" data-zoom-image="{{$product.Cover}}" src="{{$product.Cover}}" alt="{{$product.Name}}" />
+                <a href="/products/{{$product.Id}}">
+                    <h2>{{$product.ModelName}}</h2>
+                    <h3>{{$product.Name}}</h3>
+                </a>
+                <div class="price-details">
+                    <div class="price-number">
+                        <p><span class="rupees">{{formatFValue $product.Price 0}} VND</span></p>
+                    </div>
+                    <div class="add-cart">
+                        <h4><a href="/products/{{$product.Id}}">Chi tiết</a></h4>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            {{end}}
+        {{else}}
+            <div class="text-center">Chưa có Sản phẩm nào</div>
+        {{end}}
+        </div>
+    {{end}}
+        <div class="content_bottom">
+            <div class="heading">
+            {{if eq .keyword ""}}
+                <h3>Sản phẩm khác</h3>
+            {{else}}
+                <h3>Sản phẩm được tìm kiếm</h3>
+            {{end}}
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section group">
+    {{range $index, $product := .otherProducts}}
+        {{if and (gt $index 0) (eq (mod $index 4) 0)}}
+        </div>
+        <div class="section group">
+        {{end}}
+            <div class="grid_1_of_4 images_1_of_4">
+                <img class="zoomer" data-zoom-image="{{$product.Cover}}" src="{{$product.Cover}}" alt="{{$product.Name}}" />
+                <a href="/products/{{$product.Id}}">
+                    <h2>{{$product.ModelName}}</h2>
+                    <h3>{{$product.Name}}</h3>
+                </a>
+                <div class="price-details">
+                    <div class="price-number">
+                        <p><span class="rupees">{{formatFValue $product.Price 0}} VND</span></p>
+                    </div>
+                    <div class="add-cart">
+                        <h4><a href="/products/{{$product.Id}}">Chi tiết</a></h4>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+    {{else}}
+        <br><div class="text-center">Chưa có Sản phẩm nào</div>
+    {{end}}
+        </div>
+
+        <div class="content-pagenation">
+            <li><a href="?page=1">Frist</a></li>
+            {{if gt .currpage 2}}
+            <li><span>...</span></li>
+            <li><a href="?page={{subtract .currpage 2}}">{{subtract .currpage 2}}</a></li>
+            {{end}}
+            {{if gt .currpage 1}}
+            <li><a href="?page={{subtract .currpage 1}}">{{subtract .currpage 1}}</a></li>
+            {{end}}
+            <li class="active"><a href="?page={{.currpage}}">{{.currpage}}</a></li>
+            {{if le (add .currpage 1) .pagesTotal}}
+            <li><a href="?page={{add .currpage 1}}">{{add .currpage 1}}</a></li>
+            {{end}}
+            {{if le (add .currpage 2) .pagesTotal}}
+            <li><a href="?page={{add .currpage 2}}">{{add .currpage 2}}</a></li>
+            <li><span>...</span></li>
+            {{end}}
+            <li><a href="?page={{.pagesTotal}}">Last</a></li>
+            <div class="clear"> </div>
+        </div>
+{{template "footer.html" .}}

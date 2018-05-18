@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{.title}}</title>
+    <link href="/public/css/bootstrap-3.3.6.min.css" rel="stylesheet" />
+    <link href="/public/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/public/css/bootstrap-multiselect.css" rel="stylesheet" />
+    <link href="/public/css/basic.css" rel="stylesheet" />
+    <link href="/public/css/style.css" rel="stylesheet" />
+    <link href="/public/css/admin.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+    <script src="/public/js/jquery-2.2.4.min.js"></script>
+    <script src="/public/js/bootstrap-3.3.6.min.js"></script>
+    <script src="/public/js/bootstrap-multiselect.js"></script>
+    <script src="/public/js/jquery.metisMenu.js"></script>
+    <script src="/public/js/ckeditor/ckeditor.js"></script>
+    <script src="/public/js/jquery.showMessage.min.js"></script>
+    <script src="/public/js/jquery.twbsPagination.min.js"></script>
+    <script src="/public/js/jquery.elevateZoom.min.js"></script>
+    <script src="/public/js/custom.js"></script>
+    <script src="/public/js/common.js"></script>
+</head>
+<body>
+<script>
+    var root_url = '/admin/';
+</script>
+{{template "flash.html" .}}
+<div id="common_dialog" class="collapse modal fade" role="dialog"></div>
+<div id="wrapper">
+    <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a target="_blank" class="navbar-brand" href="/">Mỹ Phẩm Tây Ninh</a>
+        </div>
+
+        <div class="header-right">
+            <a href="/admin/comments" class="btn btn-info" title="Bình luận mới"><b>{{.newCommentNum}}</b> <i class="fa fa-comments-o fa-2x"></i></a>
+            <a href="/logout" class="btn btn-danger" title="Đăng xuất"><i class="fa fa-sign-out fa-2x"></i></a>
+        </div>
+    </nav>

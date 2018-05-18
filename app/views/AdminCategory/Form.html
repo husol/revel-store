@@ -1,0 +1,21 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form role="form" method="POST" action="/admin/categories/update">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{if gt .Id 0}}Sửa{{else}}Thêm{{end}} Loại sản phẩm</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group required">
+                    <label><span class="glyphicon glyphicon-th-list"></span> Tên loại sản phẩm</label>
+                    <input type="text" id="name" name="name" value="{{.Name}}" class="form-control" placeholder="Enter category name">
+                </div>
+            </div>
+            <input type="hidden" id="idRecord" name="id_record" value="{{.Id}}"/>
+            <div class="modal-footer">
+                <button id="submitCategory" type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </form>
+    </div>
+</div>

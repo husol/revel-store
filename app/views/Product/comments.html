@@ -1,0 +1,16 @@
+{{range $index, $comment := .Comments}}
+{{if or (gt $comment.Status 0) (and (eq $comment.Status 0) (eq $comment.IdUser $.LoggedUser.Id))}}
+<div data-id="{{$comment.Id}}">
+    <span class="text-red">{{$comment.UserFullName}}</span> bình luận vào <i>{{datetime $comment.CreatedAt}}</i>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    {{if eq $comment.IdUser $.LoggedUser.Id}}
+    <span class="btn-editComment glyphicon glyphicon-edit cursor-pointer text-blue" title="Edit"></span>
+    &nbsp;
+    <span class="btn-deleteComment glyphicon glyphicon-trash cursor-pointer text-red" title="Delete"></span>
+    {{end}}
+</div>
+<p>{{nl2br $comment.Content}}</p>
+{{end}}
+{{else}}
+<div class="text-center">Không có bình luận nào</div>
+{{end}}

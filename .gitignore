@@ -1,0 +1,18 @@
+#common
+app.conf
+
+#log and template
+log/**
+app/routes/**
+app/tmp/**
+
+#files and images
+public/files/**
+public/images/**
+
+#Gogland
+.idea
+
+#file system on mac
+.DS_Store
+

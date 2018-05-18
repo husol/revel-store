@@ -1,0 +1,46 @@
+{{set . "title" .myCategory.Name}}
+{{template "header.html" .}}
+{{template "layouts/header_slide.html" .}}
+  </div>
+  <div class="main">
+    <div class="content">
+
+      <div class="content_top">
+        <div class="heading">
+          <h3>Sản phẩm <span class="text-red">{{.myCategory.Name}}</span></h3>
+        </div>
+        <div class="see">
+          <p><a href="/products">Xem tất cả Sản phẩm</a></p>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="section group">
+    {{range $index, $product := .products}}
+      {{if and (eq (mod $index 4) 0) (gt $index 0)}}
+      </div>
+      <div class="section group">
+      {{end}}
+        <div class="grid_1_of_4 images_1_of_4">
+          <img class="zoomer" data-zoom-image="{{$product.Cover}}" src="{{$product.Cover}}" alt="{{$product.Name}}" />
+          <a href="/products/{{$product.Id}}">
+            <h2>{{$product.ModelName}}</h2>
+            <h3>{{$product.Name}}</h3>
+          </a>
+          <div class="price-details">
+            <div class="price-number">
+              <p><span class="rupees">{{formatFValue $product.Price 0}} VND</span></p>
+            </div>
+            <div class="add-cart">
+              <h4><a href="/products/{{$product.Id}}">Chi tiết</a></h4>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+    {{else}}
+      <div class="section group"><br>
+        <div class="text-center">Chưa có Sản phẩm nào</div>
+      </div>
+    {{end}}
+      </div>
+
+{{template "footer.html" .}}

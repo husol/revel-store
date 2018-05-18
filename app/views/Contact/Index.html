@@ -1,0 +1,51 @@
+{{set . "title" "Contact"}}
+{{template "header.html" .}}
+</div>
+<div class="main">
+    <div class="content">
+        <div class="section group">
+            <div class="col span_2_of_3">
+                <div class="contact-form">
+                    <h2>Liên hệ với chúng tôi</h2>
+                    <form method="post" action="/contact/send_message">
+                        <div class="form-group required">
+                            <span><label>Họ và tên</label></span>
+                            <span><input name="contact_name" type="text" class="textbox" ></span>
+                        </div>
+                        <div class="form-group required">
+                            <span><label>E-mail</label></span>
+                            <span><input name="contact_email" type="text" class="textbox"></span>
+                        </div>
+                        <div class="form-group required">
+                            <span><label>Tin nhắn</label></span>
+                            <span><textarea name="contact_msg"> </textarea></span>
+                        </div>
+                        <div class="g-recaptcha" data-sitekey="6LfnIDkUAAAAAP1Br-z8W5_gSqer4t_vwho3T8Wf"></div>
+<!--Local key                        <div class="g-recaptcha" data-sitekey="6LclTCAUAAAAALxvwNvIpveB9e09_vmY81iw84sZ"></div>-->
+                        <div>
+                            <span><input type="submit" value="Submit"  class="myButton"></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col span_1_of_3">
+                <div class="contact_info">
+                    <h3>Find Us Here</h3>
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.4598318206477!2d106.36669119575443!3d11.079066294300498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310b30186d3391cb%3A0x35518abca28d312e!2sHusol!5e0!3m2!1sen!2s!4v1493806921941" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="company_address">
+                    <h3>Husol Information:</h3>
+                    <p>66, ĐT 787 Street, Loc Tho Hamlet</p>
+                    <p>Loc Hung Ward</p>
+                    <p>Trang Bang District</p>
+                    <p>Tay Ninh Province</p>
+                    <p>Vietnam</p>
+                    <p>Phone:(+84) 932 012469</p>
+                    <p>Email: <span><a href="mailto:enquiry@husol.org">enquiry@husol.org</a></span></p>
+                </div>
+            </div>
+        </div>
+
+{{template "footer.html" .}}

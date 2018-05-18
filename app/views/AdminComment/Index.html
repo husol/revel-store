@@ -1,0 +1,22 @@
+{{set . "title" "Husol Admin"}}
+{{template "admin_header.html" .}}
+{{template "layouts/admin_sidebar.html" .}}
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-head-line">Quản trị bình luận</h1>
+                <div class="panel">
+                    <div class="panel-body">
+                        <div id="tableComment" class="table-responsive" data-totalpage="{{.totalPage}}"></div>
+                        <div id="paginationComment"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+{{append . "moreScripts" "js/admin/comment.js"}}
+{{template "admin_footer.html" .}}

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Login | My Pham Tay Ninh | myphamtayninh.com</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="title" content="Cửa hàng Mỹ Phẩm Tây Ninh | My Pham Tay Ninh | myphamtayninh.com">
+    <meta name="description" content="Login - My Pham Tay Ninh">
+    <link href="/public/css/bootstrap-3.3.6.min.css" rel="stylesheet" />
+    <link href="/public/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/public/css/font-awesome.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+    <link rel="alternate" href="https://myphamtayninh.com/" hreflang="vi" />
+    <script src="/public/js/jquery-2.2.4.min.js"></script>
+    <script src="/public/js/bootstrap-3.3.6.min.js"></script>
+    <script src="/public/js/jquery.showMessage.min.js"></script>
+    <script src="/public/js/jquery.elevateZoom.min.js"></script>
+    <script src="/public/js/common.js"></script>
+</head>
+<body style="background-color: #E2E2E2;">
+<div id="loading" class="notification_box">
+    <p><span id="infoText">Processing...</span></p>
+    <img src="/public/img/loading.gif">
+</div>
+<script>
+    var root_url = '/';
+</script>
+{{template "flash.html" .}}
+<div id="common_dialog" class="collapse modal fade" role="dialog"></div>
+<div class="container">
+    <div class="row text-center " style="padding-top:20px;">
+        <div class="col-md-12">
+            <img width="250" height="230" src="/public/img/logo.png" />
+        </div>
+    </div>
+    <div class="row ">
+
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+
+            <div class="panel-body">
+                <form action="/login" method="post">
+                    <hr />
+                    <h5>Nhập thông tin Đăng nhập</h5>
+                    <br />
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                        <input type="text" name="email" class="form-control" placeholder="Email" />
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" name="password" class="form-control" placeholder="Password" />
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-inline">
+                            <button type="submit" class="btn btn-primary">Login Now</button>
+                        </label>
+                        <span id="forgot_password" class="pull-right"><a href="javascript:void(0);">Quên mật khẩu?</a></span>
+                    </div>
+                    <hr />
+                    Chưa đăng ký tài khoản? <a href="/?register=1">Đăng ký ngay</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

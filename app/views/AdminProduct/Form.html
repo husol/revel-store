@@ -1,0 +1,65 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form role="form" method="POST" action="/admin/products/update" enctype="multipart/form-data">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{if gt .Id 0}}Sửa{{else}}Thêm{{end}} Sản phẩm</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group required">
+                    <label><span class="glyphicon glyphicon-th-list"></span> Loại sản phẩm</label>
+                    <select id="category" name="category" class="form-control">
+                        <option value="">Chọn loại sản phẩm</option>
+                        {{range $index, $category := .Categories}}
+                        <option value="{{$category.Id}}"{{if eq $.IdCategory $category.Id}} selected="selected"{{end}}>{{$category.Name}}</option>
+                        {{end}}
+                    </select>
+                </div>
+                <div class="form-group required">
+                    <label><span class="glyphicon glyphicon-qrcode"></span> Mã sản phẩm</label>
+                    <input type="text" id="model_name" name="model_name" value="{{.ModelName}}" class="form-control" placeholder="Enter model name">
+                </div>
+                <div class="form-group required">
+                    <label><span class="glyphicon glyphicon-barcode"></span> Tên sản phẩm</label>
+                    <input type="text" id="name" name="name" value="{{.Name}}" class="form-control" placeholder="Enter product name">
+                </div>
+                <div class="form-group">
+                    <label><span class="glyphicon glyphicon-picture"></span> Cover:</label>
+                    <img src='{{if eq .Cover ""}}/public/img/no_image.png{{else}}{{.Cover}}{{end}}' id="img_cover" class="img-thumbnail cursor-pointer" title="Click to change cover image" alt="Cover image" style="padding:4px;max-width:480px; max-height:360px; width:50%;">
+                    <input type="file" style="display: none" id="cover" name="cover" data-link="{{.Cover}}">
+                </div>
+                <div class="form-group required">
+                    <label><span class="glyphicon glyphicon-align-justify"></span> Mô tả ngắn</label>
+                    <textarea id="short_description" name="short_description" class="form-control" rows="5">{{if gt .Id 0}}{{.ShortDescription}}{{else}}- Đơn vị tính: &#x0a;- Xuất sứ: {{end}}</textarea>
+                </div>
+                <div class="form-group required">
+                    <label><span class="glyphicon glyphicon-align-justify"></span> Mô tả chi tiết</label>
+                    <textarea id="description" name="description" class="form-control">{{.Description}}</textarea>
+                </div>
+                <div class="form-group required">
+                    <label><span class="glyphicon glyphicon-usd"></span> Giá</label> (VND)
+                    <input type="text" id="price" name="price" value="{{formatFValue .Price 0}}" class="form-control digit">
+                </div>
+                <div class="form-group">
+                    <label><span class="glyphicon glyphicon-bookmark"></span> Nổi bật</label>
+                    <select id="is_feature" name="is_feature" class="form-control">
+                        <option value="0"{{if eq .IsFeature 0}} selected="selected"{{end}}>Không nổi bật</option>
+                        <option value="1"{{if eq .IsFeature 1}} selected="selected"{{end}}>Nổi bật</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label><span class="glyphicon glyphicon-ok-sign"></span> Trạng thái</label>
+                    <select id="status" name="status" class="form-control">
+                        <option value="0"{{if eq .Status 0}} selected="selected"{{end}}>Không hiển thị</option>
+                        <option value="1"{{if eq .Status 1}} selected="selected"{{end}}>Hiển thị</option>
+                    </select>
+                </div>
+            </div>
+            <input type="hidden" id="idRecord" name="id_record" value="{{.Id}}"/>
+            <div class="modal-footer">
+                <button id="submitProduct" type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </form>
+    </div>
+</div>
